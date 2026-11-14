@@ -4,9 +4,8 @@ export default {
 
     // Action 1: Check if the user is verified with a valid, allowed email
     const userEmail = request.headers.get("cf-access-authenticated-user-email");
-    const allowedEmail = env.ALLOWED_EMAIL; 
 
-    if (!userEmail || userEmail.toLowerCase() !== allowedEmail.toLowerCase()) {
+    if (!userEmail) {
       return new Response("Unauthorized - Access Restricted", {
         status: 403,
         headers: { "Content-Type": "text/plain" }
