@@ -91,7 +91,7 @@ export default {
     if (contentType.includes("text/html")) {
       newHeaders.delete("content-length");
 
-        // Function to help rewrite the HTML Document.
+      // Function to help rewrite the HTML Document.
       return new HTMLRewriter()
         .on("a[href], link[href], area[href]", {
           element(el) {
@@ -100,7 +100,7 @@ export default {
         })
         .on("script[src], img[src], iframe[src], video[src], audio[src], source[src]", {
           element(el) {
-            el.setAttribute("src", rewriteToProxy(el.setAttribute("src")));
+            el.setAttribute("src", rewriteToProxy(el.getAttribute("src")));
           },
         })
         .on("form[action]", {
