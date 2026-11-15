@@ -67,7 +67,7 @@ export async function onRequest(context) {
   newHeaders.set("Access-Control-Allow-Origin", "*");
 
   // 4. Handle redirects
-  if (.includes(response.status)) {
+  if ([301, 302, 303, 307, 308].includes(response.status)) {
     const location = newHeaders.get("Location");
     if (location) newHeaders.set("Location", rewriteToProxy(location));
     return new Response(null, { status: response.status, headers: newHeaders });
